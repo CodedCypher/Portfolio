@@ -7,7 +7,6 @@ import {
 	Stack,
 	Text,
 	Box,
-	useColorModeValue,
 	useColorMode,
 	List,
 	ListItem,
@@ -19,13 +18,12 @@ import { AiOutlineCheckCircle, AiOutlineRight } from "react-icons/ai";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import dynamic from "next/dynamic";
-const Sphere = dynamic(() => import("./Sphere"));
+import { PresentationControls, Loader } from "@react-three/drei";
 import Link from "next/link";
+import Mask from "../components/Mask";
 
 const About = () => {
-	const { ref, inView } = useInView();
+	const { ref, inView } = useInView({ threshold: 0.2 });
 	const { colorMode } = useColorMode();
 	const animationInfo = useAnimation();
 	const animationImg = useAnimation();
@@ -46,7 +44,7 @@ const About = () => {
 
 			animationImg.start({
 				opacity: 1,
-				y: 0,
+				x: 0,
 				transition: {
 					duration: 2,
 					delay: 0.2,
@@ -54,10 +52,10 @@ const About = () => {
 				},
 			});
 		}
-	}, [inView, colorMode]);
+	}, [inView, colorMode, animationImg, animationInfo]);
 
 	return (
-		<Box w="100%">
+		<Box w="100%" h="100vh">
 			<Container maxW="container.xl" h="100%">
 				<HStack
 					flexDirection={{ base: "column", md: "row" }}
@@ -65,7 +63,7 @@ const About = () => {
 					w="100%"
 					h="100%"
 				>
-					<Box flex="1" ref={ref} position="relative">
+					<Box flex="1" ref={ref} position="relative" w="100%" flex="1">
 						<MotionInfo
 							h="100%"
 							spacing="6"
@@ -79,10 +77,10 @@ const About = () => {
 						>
 							<Heading size="2xl">Hi there</Heading>
 							<Text fontSize="md">
-								I'm Jim, currently studying in feu roosevelt amet consectetur
-								adipisicing elit. Veritatis vitae veniam asperiores, itaque enim
-								beatae facilis est iste in ipsa quas qui ullam officia mollitia
-								harum laboriosam deleniti perspiciatis debitis.
+								I&apos;m Jim, currently studying in feu roosevelt amet
+								consectetur adipisicing elit. Veritatis vitae veniam asperiores,
+								itaque enim beatae facilis est iste in ipsa quas qui ullam
+								officia mollitia harum laboriosam deleniti perspiciatis debitis.
 							</Text>
 							<Text fontSize="md">
 								Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -117,7 +115,7 @@ const About = () => {
 									})}
 								</List>
 							</SimpleGrid>
-							<Link href="/work">
+							<Link href="/work" passHref>
 								<Button
 									colorScheme="teal"
 									w="fit-content"
@@ -128,50 +126,31 @@ const About = () => {
 								</Button>
 							</Link>
 						</MotionInfo>
-						<Box
-							position="absolute"
-							top="0"
-							w="100%"
-							h="100%"
-							opacity="0.1"
-							zIndex="-1"
-						>
-							<Canvas>
-								<OrbitControls />
-								<ambientLight intensity={0.5} />
-								<directionalLight position={[-2, 5, 2]} intensity={1} />
-								<Suspense fallback={null}>
-									<Sphere />
-								</Suspense>
-							</Canvas>
-						</Box>
 					</Box>
 					<MotionImg
 						pt="8"
-						position="relative"
-						initial={{ opacity: 0, y: 100 }}
+						initial={{ opacity: 0, x: 100 }}
 						animate={animationImg}
+						h="100%"
+						flex="1"
 					>
-						<Image
-							alt="about-picture"
-							h={{ base: "sm", md: "lg", lg: "xl" }}
-							w={{ base: "xs", md: "sm", lg: "md" }}
-							objectFit="cover"
-							src="https://images.pexels.com/photos/1852482/pexels-photo-1852482.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-							borderRadius="md"
-						/>
-						<Box
-							border="2px solid "
-							borderColor={useColorModeValue("teal.500", "teal.300")}
-							borderRadius="md"
-							h={{ base: "md", md: "md", lg: "xl" }}
-							w={{ base: "sm", md: "sm", lg: "md" }}
-							display={{ base: "none", md: "inherit" }}
-							right="-5"
-							bottom="-5"
-							position="absolute"
-							zIndex="-1"
-						/>
+						<Canvas shadows>
+							<ambientLight intensity={5} />
+							<directionalLight position={[-2, 5, 2]} intensity={5} />
+							<Suspense fallback={null}>
+								<PresentationControls
+									global
+									config={{ mass: 2, tension: 500 }}
+									snap={{ mass: 4, tension: 1500 }}
+									rotation={[0, 0.3, 0]}
+									polar={[-Math.PI / 3, Math.PI / 3]}
+									azimuth={[-Math.PI / 1.4, Math.PI / 2]}
+								>
+									<Mask position={[0, 0.25, 0]} scale={0.003} />
+								</PresentationControls>
+							</Suspense>
+						</Canvas>
+						<Loader />
 					</MotionImg>
 				</HStack>
 			</Container>

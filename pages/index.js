@@ -17,6 +17,7 @@ import { OrbitControls } from "@react-three/drei";
 import dynamic from "next/dynamic";
 const TorusKnot = dynamic(() => import("../components/TorusKnot"));
 import About from "../components/About";
+import PageLayout from "../components/PageLayout";
 
 const Home = () => {
 	const { colorMode } = useColorMode();
@@ -26,7 +27,7 @@ const Home = () => {
 	const MotionBox = motion(Box);
 
 	return (
-		<>
+		<PageLayout title="Home">
 			<Box w="100%" h="100vh">
 				<Container maxW="container.xl" w="100%" h="100%">
 					<HStack
@@ -145,7 +146,7 @@ const Home = () => {
 				</Container>
 			</Box>
 			<About />
-		</>
+		</PageLayout>
 	);
 };
 

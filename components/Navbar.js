@@ -13,11 +13,10 @@ import {
 	MenuItem,
 	useColorModeValue,
 } from "@chakra-ui/react";
-import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
+import ThemeToggleButton from "./themeToggleButton";
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
 	const MotionButton = motion(Button);
@@ -31,7 +30,7 @@ const Navbar = () => {
 			<Container maxW="container.xl">
 				<HStack w="100%" justifyContent="space-between" py="4">
 					<HStack spacing="24">
-						<Link href="/">
+						<Link href="/" passHref>
 							<Heading
 								size="lg"
 								color={useColorModeValue("teal.500", "teal.200")}
@@ -43,25 +42,21 @@ const Navbar = () => {
 							</Heading>
 						</Link>
 						<HStack spacing="16" display={{ base: "none", md: "inherit" }}>
-							<Link href="/work">
+							<Link href="/work" passHref>
 								<MotionButton variant="link">Projects</MotionButton>
 							</Link>
-							<Link href="/contact">
+							<Link href="/contact" passHref>
 								<MotionButton variant="link">Contact</MotionButton>
 							</Link>
 						</HStack>
 					</HStack>
 					<HStack spacing="4">
-						<IconButton
-							onClick={toggleColorMode}
-							colorScheme={colorMode === "light" ? "orange" : "teal"}
-							icon={
-								colorMode === "light" ? <BsFillSunFill /> : <BsFillMoonFill />
-							}
+						<ThemeToggleButton
 							_hover={{
 								cursor: "pointer",
 							}}
 						/>
+						>
 						<Menu isLazy>
 							<MenuButton
 								display={{ base: "inherit", md: "none" }}
@@ -69,13 +64,13 @@ const Navbar = () => {
 								icon={<AiOutlineMenu />}
 							/>
 							<MenuList>
-								<Link href="/">
+								<Link href="/" passHref>
 									<MenuItem>Home</MenuItem>
 								</Link>
-								<Link href="/work">
+								<Link href="/work" passHref>
 									<MenuItem>Projects</MenuItem>
 								</Link>
-								<Link href="/contact">
+								<Link href="/contact" passHref>
 									<MenuItem>Contact</MenuItem>
 								</Link>
 							</MenuList>
