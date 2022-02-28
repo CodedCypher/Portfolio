@@ -49,7 +49,7 @@ const Project = () => {
 
 						<BreadcrumbItem>
 							<HStack>
-								<Link href="/work/map">
+								<Link href="/work/map" passHref>
 									<BreadcrumbLink>MAPlatecto Model</BreadcrumbLink>
 								</Link>
 								<Badge>2022</Badge>

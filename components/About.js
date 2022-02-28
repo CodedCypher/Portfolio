@@ -63,7 +63,7 @@ const About = () => {
 					w="100%"
 					h="100%"
 				>
-					<Box flex="1" ref={ref} position="relative" w="100%" flex="1">
+					<Box ref={ref} position="relative" w="100%" flex="1">
 						<MotionInfo
 							h="100%"
 							spacing="6"

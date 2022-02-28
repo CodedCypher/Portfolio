@@ -38,7 +38,7 @@ const Project = () => {
 						separator={<HiOutlineChevronRight color="gray.500" />}
 					>
 						<BreadcrumbItem>
-							<Link href="/work">
+							<Link href="/work" passHref>
 								<BreadcrumbLink
 									color={useColorModeValue("teal.500", "teal.200")}
 								>
@@ -49,8 +49,8 @@ const Project = () => {
 
 						<BreadcrumbItem>
 							<HStack>
-								<Link href="/work/mangafinder">
-									<BreadcrumbLink href="/work/map">Manga Finder</BreadcrumbLink>
+								<Link href="/work/mangafinder" passHref>
+									<BreadcrumbLink>Manga Finder</BreadcrumbLink>
 								</Link>
 								<Badge>2020</Badge>
 							</HStack>

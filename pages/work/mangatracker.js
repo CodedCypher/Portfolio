@@ -48,7 +48,7 @@ const Project = () => {
 
 						<BreadcrumbItem>
 							<HStack>
-								<Link href="/work/mangatracker">
+								<Link href="/work/mangatracker" passHref>
 									<BreadcrumbLink>Manga Tracker</BreadcrumbLink>
 								</Link>
 								<Badge>2021</Badge>
