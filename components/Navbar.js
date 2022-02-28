@@ -49,6 +49,13 @@ const Navbar = () => {
 							<Link href="/contact" passHref>
 								<MotionButton variant="link">Contact</MotionButton>
 							</Link>
+							<a
+								href="https://github.com/CodedCypher/Portfolio"
+								target="_blank"
+								rel="noreferrer"
+							>
+								<MotionButton variant="link">Source</MotionButton>
+							</a>
 						</HStack>
 					</HStack>
 					<HStack spacing="4">
@@ -73,6 +80,13 @@ const Navbar = () => {
 								<Link href="/contact" passHref>
 									<MenuItem>Contact</MenuItem>
 								</Link>
+								<a
+									href="https://github.com/CodedCypher/Portfolio"
+									target="_blank"
+									rel="noreferrer"
+								>
+									<MenuItem>Source</MenuItem>
+								</a>
 							</MenuList>
 						</Menu>
 					</HStack>
