@@ -17,6 +17,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import ThemeToggleButton from "./themeToggleButton";
+
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
 	const MotionButton = motion(Button);
@@ -56,7 +57,6 @@ const Navbar = () => {
 								cursor: "pointer",
 							}}
 						/>
-						>
 						<Menu isLazy>
 							<MenuButton
 								display={{ base: "inherit", md: "none" }}
